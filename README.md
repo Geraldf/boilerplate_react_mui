@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Getting Started with Create React App and Material UI (@mui)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -45,17 +45,7 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
 ### Advanced Configuration
 
@@ -68,3 +58,33 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Sidebar Menu
+The sidebar menue content is defined in the "Layout.js" component defined in the components folder. 
+
+```
+export default function Layout({ children }) {
+  const classes = useStyles();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const menuItems = [
+    {
+      text: "Home",
+
+      icon: <SubjectOutlined color="secondary" />,
+      path: "/",
+    },
+    {
+      text: "Release Notes",
+
+      icon: <SubjectOutlined color="secondary" />,
+      path: "/rel",
+    },
+    {
+      text: "Create Note",
+      icon: <AddCircleOutlineOutlined color="secondary" />,
+      path: "/create",
+    },
+  ];
+  ```
+  
