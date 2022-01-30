@@ -21,6 +21,7 @@ import FlagIcon from "@mui/icons-material/Flag";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import GroupWorkIcon from "@mui/icons-material/GroupWork";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
+import menuItems from "./menuItems";
 
 const drawerWidth = 240;
 
@@ -118,10 +119,9 @@ const NavDrawer = () => {
             edge="start"
             sx={{
               marginRight: "36px",
-              // ...(open && { display: "none" }),
             }}
           >
-            {/* <MenuIcon /> */}
+            
             {open ? <ChevronLeftIcon /> : <MenuIcon />}
           </IconButton>
           <Typography variant="h6" noWrap component="div">
@@ -131,9 +131,18 @@ const NavDrawer = () => {
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader></DrawerHeader>
-
+        
         <List>
-          <ListItem button>
+        {menuItems.map((item, index) => {
+          const { text, icon, url } = item;
+          return (
+            <ListItem button key={text} to={url}>
+              {icon && <ListItemIcon>{icon}</ListItemIcon>}
+              <ListItemText primary={text} />
+            </ListItem>
+          );
+        })}
+          {/* <ListItem button>
             <ListItemIcon>
               {" "}
               <CategoryIcon />{" "}
@@ -174,7 +183,7 @@ const NavDrawer = () => {
               <ReceiptIcon />{" "}
             </ListItemIcon>
             <ListItemText>Items Without COO</ListItemText>
-          </ListItem>
+          </ListItem> */}
         </List>
         <Divider />
       </Drawer>
