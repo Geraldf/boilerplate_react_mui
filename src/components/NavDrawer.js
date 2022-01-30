@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -11,16 +12,10 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import CategoryIcon from "@mui/icons-material/Category";
-import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
-import FlagIcon from "@mui/icons-material/Flag";
-import ReceiptIcon from "@mui/icons-material/Receipt";
-import GroupWorkIcon from "@mui/icons-material/GroupWork";
-import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
+
 import menuItems from "./menuItems";
 
 const drawerWidth = 240;
@@ -46,6 +41,17 @@ const closedMixin = (theme) => ({
     width: `calc(${theme.spacing(9)} + 1px)`,
   },
 });
+
+const StyledContent = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
+ 
+  padding: theme.spacing(9, 1),
+  
+  ...theme.mixins.toolbar,
+}));
+
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -95,7 +101,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-const NavDrawer = () => {
+const NavDrawer = ({ children }) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -119,9 +125,10 @@ const NavDrawer = () => {
             edge="start"
             sx={{
               marginRight: "36px",
+              // ...(open && { display: "none" }),
             }}
           >
-            
+            {/* <MenuIcon /> */}
             {open ? <ChevronLeftIcon /> : <MenuIcon />}
           </IconButton>
           <Typography variant="h6" noWrap component="div">
@@ -131,62 +138,22 @@ const NavDrawer = () => {
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader></DrawerHeader>
-        
+
         <List>
         {menuItems.map((item, index) => {
           const { text, icon, url } = item;
           return (
-            <ListItem button key={text} to={url}>
+            <ListItem button component={Link} key={text} to={url}>
               {icon && <ListItemIcon>{icon}</ListItemIcon>}
               <ListItemText primary={text} />
             </ListItem>
           );
         })}
-          {/* <ListItem button>
-            <ListItemIcon>
-              {" "}
-              <CategoryIcon />{" "}
-            </ListItemIcon>
-            <ListItemText>Uncategorized Items</ListItemText>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              {" "}
-              <ProductionQuantityLimitsIcon />{" "}
-            </ListItemIcon>
-            <ListItemText>Worn & Dented</ListItemText>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              {" "}
-              <AssignmentIndIcon />{" "}
-            </ListItemIcon>
-            <ListItemText>My Flagged Items</ListItemText>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              {" "}
-              <FlagIcon />{" "}
-            </ListItemIcon>
-            <ListItemText>All Flagged Items</ListItemText>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              {" "}
-              <GroupWorkIcon />{" "}
-            </ListItemIcon>
-            <ListItemText>Items W/Few Attr</ListItemText>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              {" "}
-              <ReceiptIcon />{" "}
-            </ListItemIcon>
-            <ListItemText>Items Without COO</ListItemText>
-          </ListItem> */}
+         
         </List>
         <Divider />
       </Drawer>
+      <StyledContent>{children}</StyledContent>
     </Box>
   );
 };

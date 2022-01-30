@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavDrawer from "./components/NavDrawer";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Home from "./sites/Home";
+import About from "./sites/About";
 
 
 const theme = createTheme({
@@ -27,8 +28,8 @@ function App() {
       <BrowserRouter>
         <NavDrawer>
           <Routes>
+            <Route path="/about" element={<About />} />
             <Route path="/" element={<Home />} />
-           
           </Routes>
         </NavDrawer>
       </BrowserRouter>
