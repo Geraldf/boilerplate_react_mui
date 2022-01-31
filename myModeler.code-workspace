@@ -1,11 +1,11 @@
 {
   "folders": [
-    {
-      "path": "../../boilerplate_react_mui"
-    },
-    {
-      "path": "../myModeler"
-    }
-  ],
+	{
+		"path": "../../boilerplate_react_mui"
+	},
+	{
+		"path": "."
+	}
+],
   "settings": {}
 }
